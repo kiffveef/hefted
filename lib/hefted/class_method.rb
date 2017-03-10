@@ -1,9 +1,9 @@
 module Hefted
   module ClassMethod
-    using Hefted::Refines
+    using Hefted::Refine
 
     def hefted(**args)
-      arguments = Arguments.new(**args)
+      arguments = Argument.new(**args)
       template = Base.new(*arguments.keys)
       self.const_set(arguments.name, template.new(*arguments.values).freeze)
     end

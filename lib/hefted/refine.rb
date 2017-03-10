@@ -1,5 +1,5 @@
 module Hefted
-  module Refines
+  module Refine
     refine String do
       def to_camel
         self.gsub(/(?:^|_|\s)(.)/) { $1.upcase }

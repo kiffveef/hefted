@@ -1,7 +1,6 @@
 require "spec_helper"
-require "hefted/refines"
 
-describe Hefted::Refines do
+describe Hefted::Refine do
   context "using" do
     using described_class
 
