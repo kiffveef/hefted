@@ -17,7 +17,6 @@ Or install it yourself as:
     $ gem install hefted
 
 ## Usage
-TODO: Write usage instructions here
 
 ```ruby
 class Options
@@ -29,9 +28,17 @@ class Options
     android: 20,
     pc: 100
   )
+
+  hefted(
+    name: :gender,
+    members: [:none, :male, :female]
+  )
 end
 
 Options::Devices.ios
 => 10
+
+Options::Gender
+=> #<struct  none=0, male=1, female=2>
 ```
 

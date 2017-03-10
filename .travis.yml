@@ -1,5 +1,14 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.3.3
+- 2.3.3
 before_install: gem install bundler -v 1.14.3
+script:
+- bundle exec rspec
+branches:
+  only:
+  - master
+notifications:
+  email: false
+  slack:
+    secure: Ux1Axyx+kqBdzI+bXVCMy1aTzA9GPR0Te8DDCo2Hr3enVwcmhbETeYI0IIXrMSUm94jEEjmMkypMMEFb8DcZHbOQAfohqPsJeyHVYvp8Pf2b6P+F7X8kQS1YCNcfuQ1hr/sNCGrQanBSOM4cONWWVPqBu/Sr8wWbNSyjLZzaXEEu/tZBCg3Lxv2IPvIFpTk6FRGMRXL7ESGXhtUIO8juziBP7onFBD4fn3B62ZQ7sXtBpVukB8Quo4ZrnqUzXvgkJq2IplzBQpTP2zG/1DSEjTBympxwJxK+LpJFNfsmU7peh8zlTcWSZkUW54afgugblhAhAK1iJ+XN2kzGcbJEXESHqusmmD50o5lsYJkCfEsCOYkwvyiqu+sUdR+cUX/40b3pG6WiKtL1AhBSuU52rwTX4r6qXdtRu2OYjO/kA8Fijpw+G9f56UVbimTF6wrqLyG96+n0IaxkcBAFpRNbM/HeS0iH/9zqml6K6GDLu9QbKsIr1EAUk5ZWztavkyf+uVvo4X2C+XiChZ8+5HM1R9sFMe6fQ2tflLl0azzWImhzQ86VP4dKl+YrKk4QWfOuyArTNtNFAPJ4GWruz9ZTh4UPhi68+zBsapxyOazg4Z3our7O0GQbwcoXdeQjnD7UmalnzlfIx9LUmREJrhE9G84Mr4/CAWpjpXqAK6Mf6XI=
