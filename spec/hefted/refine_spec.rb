@@ -4,6 +4,13 @@ describe Hefted::Refine do
   context "using" do
     using described_class
 
+    it(Hash) do
+      hash = { toto: 100, titi: 20, index: 1}
+      expect(hash.indexer!(:index)).to include(index: 1)
+      expect(hash.indexer!(:index).keys).not_to include(:toto, :titi)
+      expect(hash.indexer!(:first)).to include(first: 0)
+    end
+
     it(String) do
       expect("toto".to_camel).to eq "Toto"
       expect("spam_ham".to_camel).to eq "SpamHam"
