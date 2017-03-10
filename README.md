@@ -1,5 +1,7 @@
 # Hefted
 
+![Build Status](https://travis-ci.org/weathare/hefted.svg?branch=master)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -43,3 +45,6 @@ Options::Gender
 => #<struct  none=9, male=10, female=11>
 ```
 
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
