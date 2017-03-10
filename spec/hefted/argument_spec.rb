@@ -1,12 +1,11 @@
 require "spec_helper"
-require "hefted/arguments"
 
-describe Hefted::Arguments do
+describe Hefted::Argument do
   subject { described_class.new(arguments) }
   let(:name) { :toto }
 
   context "Array members" do
-    using Hefted::Refines
+    using Hefted::Refine
 
     let(:members) { %w(spam ham eggs) }
     let(:arguments) do
@@ -51,7 +50,7 @@ describe Hefted::Arguments do
   end
 
   context "Hash members" do
-    using Hefted::Refines
+    using Hefted::Refine
 
     let(:members) { { spam: 10, ham: 20, eggs: 100 } }
     let(:arguments) do

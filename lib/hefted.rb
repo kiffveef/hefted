@@ -1,8 +1,8 @@
 require "hefted/version"
 
 module Hefted
-  autoload :Refines, "hefted/refines"
-  autoload :Arguments, "hefted/arguments"
+  autoload :Refine, "hefted/refine"
+  autoload :Argument, "hefted/argument"
   autoload :ClassMethod, "hefted/class_method"
 
   def self.included(base)

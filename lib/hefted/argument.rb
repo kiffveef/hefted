@@ -2,8 +2,8 @@ module Hefted
   class MissingKeysError < StandardError; end
   class MissingValuesError < StandardError; end
 
-  class Arguments
-    using Hefted::Refines
+  class Argument
+    using Hefted::Refine
 
     def initialize(**args)
       @name = args.fetch(:name)
