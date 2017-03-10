@@ -7,6 +7,7 @@ module Hefted
 
     def initialize(**args)
       @name = args.fetch(:name)
+      @first = args.indexer!(:first)[:first]
       @members = args[:members] || args.select { |key, value| key != :name }
     end
 
@@ -29,7 +30,7 @@ module Hefted
     def values
       case @members
       when Array
-        @members.map.with_index { |key, i| i }
+        @members.map.with_index(@first) { |key, i| i }
       when Hash
         raise MissingValuesError if @members.has_value?(nil)
         @members.values

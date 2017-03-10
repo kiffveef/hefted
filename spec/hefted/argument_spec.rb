@@ -8,10 +8,12 @@ describe Hefted::Argument do
     using Hefted::Refine
 
     let(:members) { %w(spam ham eggs) }
+    let(:first) { 20 }
     let(:arguments) do
       {
         name: name,
-        members: members
+        members: members,
+        first: first
       }
     end
 
@@ -23,11 +25,12 @@ describe Hefted::Argument do
       expect(subject.keys).to be_a(Array)
       expect(subject.keys.first).to be_a(Symbol)
       expect(subject.keys).to include(*members.map(&:to_sym))
+      expect(subject.keys).not_to include(:first)
     end
 
     it "#values" do
       expect(subject.values).to be_a(Array)
-      expect(subject.values).to include *(0..members.size - 1)
+      expect(subject.values).to include(*(first..(first + members.size - 1)).to_a)
     end
 
     context "exception" do
@@ -53,10 +56,12 @@ describe Hefted::Argument do
     using Hefted::Refine
 
     let(:members) { { spam: 10, ham: 20, eggs: 100 } }
+    let(:first) { { first: 2} }
     let(:arguments) do
       {
         name: name,
-        **members
+        **members,
+        **first
       }
     end
 
@@ -68,11 +73,13 @@ describe Hefted::Argument do
       expect(subject.keys).to be_a(Array)
       expect(subject.keys.first).to be_a(Symbol)
       expect(subject.keys).to include(*members.keys)
+      expect(subject.keys).not_to include(*first.keys)
     end
 
     it "#values" do
       expect(subject.values).to be_a(Array)
       expect(subject.values).to include *members.values
+      expect(subject.values).not_to include *first.values
     end
 
     context "exception" do
