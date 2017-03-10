@@ -31,7 +31,8 @@ class Options
 
   hefted(
     name: :gender,
-    members: [:none, :male, :female]
+    members: [:none, :male, :female],
+    first: 9
   )
 end
 
@@ -39,6 +40,6 @@ Options::Devices.ios
 => 10
 
 Options::Gender
-=> #<struct  none=0, male=1, female=2>
+=> #<struct  none=9, male=10, female=11>
 ```
 

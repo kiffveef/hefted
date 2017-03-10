@@ -5,7 +5,7 @@ describe Hefted::Refine do
     using described_class
 
     it(Hash) do
-      hash = { toto: 100, titi: 20, index: 1}
+      hash = { toto: 100, titi: 20, index: 1 }
       expect(hash.indexer!(:index)).to include(index: 1)
       expect(hash.indexer!(:index).keys).not_to include(:toto, :titi)
       expect(hash.indexer!(:first)).to include(first: 0)

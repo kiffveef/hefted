@@ -6,4 +6,3 @@ describe "core_ext" do
     expect(Object).to be_const_defined(:Hefted)
   end
 end
-

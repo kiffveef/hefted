@@ -20,7 +20,7 @@ describe Hefted::ClassMethod do
     it { is_expected.to be_const_defined(:Toto) }
     it { is_expected.to respond_to(:hefted) }
     it { is_expected.to respond_to(:release_hefted) }
-    it { expect{ Hefted::ClassMethod::Base }.to raise_error(NameError) }
+    it { expect { Hefted::ClassMethod::Base }.to raise_error(NameError) }
   end
 
   context "get struct" do
