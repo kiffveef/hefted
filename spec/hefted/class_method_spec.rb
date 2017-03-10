@@ -49,4 +49,12 @@ describe Hefted::ClassMethod do
     it(:[]) { expect(subject[:eggs]).to eq 100 }
     it(:[]) { expect(subject[:name]).to eq nil }
   end
+
+  context "remove const" do
+    subject do
+      klass.release_hefted(:toto)
+      klass
+    end
+    it { is_expected.not_to be_const_defined(:Toto) }
+  end
 end
