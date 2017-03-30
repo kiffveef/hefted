@@ -1,6 +1,6 @@
 # Hefted
 
-![Build Status](https://travis-ci.org/weathare/hefted.svg?branch=master)
+[![Build Status](https://travis-ci.org/weathare/hefted.svg?branch=master)](https://travis-ci.org/weathare/hefted)
 
 ## Installation
 
