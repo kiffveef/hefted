@@ -92,4 +92,25 @@ describe Hefted::Argument do
       end
     end
   end
+
+  context "Join name" do
+    using Hefted::Refine
+
+    let(:join) { %i(tete titi) }
+    let(:arguments) do
+      {
+        name: name,
+        join: join,
+      }
+    end
+
+    it "#join?" do
+      expect(subject.join?).to be_truthy
+    end
+
+    it "#joins" do
+      names = join.map { |_| _.to_camel }
+      expect(subject.joins).to include *names
+    end
+  end
 end

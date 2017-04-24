@@ -7,8 +7,9 @@ module Hefted
 
     def initialize(**args)
       @name = args.fetch(:name)
+      @join = args.fetch(:join, nil)
       @first = args.indexer!(:first)[:first]
-      @members = args[:members] || args.select { |key, value| key != :name }
+      @members = args[:members] || args.select { |key, value| !%i(name join).include?(key) }
     end
 
     def name
@@ -37,6 +38,14 @@ module Hefted
       else
         raise MissingValuesError
       end
+    end
+
+    def join?
+      !!@join
+    end
+
+    def joins
+      @join.map { |name| name.to_camel }
     end
   end
 end
