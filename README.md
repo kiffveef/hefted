@@ -36,6 +36,18 @@ class Options
     members: [:none, :male, :female],
     first: 9
   )
+
+  hefted(
+    name: :generation,
+    young: 10,
+    middle: 30,
+    old: 50
+  )
+
+  hefted(
+    name: personal,
+    join: [:generation, :gender],
+  )
 end
 
 Options::Devices.ios
@@ -43,6 +55,12 @@ Options::Devices.ios
 
 Options::Gender
 => #<struct  none=9, male=10, female=11>
+
+Options::Personal.middle
+=> 30
+
+Options::Personal.female
+=> 2
 ```
 
 ## License
