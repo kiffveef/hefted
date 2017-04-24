@@ -25,10 +25,10 @@ class Options
   include Hefted
 
   hefted(
-    name: :devices,
-    ios: 10,
-    android: 20,
-    pc: 100
+    name: :generation,
+    young: 10,
+    middle: 30,
+    old: 50
   )
 
   hefted(
@@ -38,29 +38,22 @@ class Options
   )
 
   hefted(
-    name: :generation,
-    young: 10,
-    middle: 30,
-    old: 50
-  )
-
-  hefted(
-    name: personal,
+    name: :personal,
     join: [:generation, :gender],
   )
 end
 
-Options::Devices.ios
-=> 10
+Options::Generation.middle
+=> 30
 
 Options::Gender
 => #<struct  none=9, male=10, female=11>
 
-Options::Personal.middle
-=> 30
+Options::Personal.young
+=> 10
 
 Options::Personal.female
-=> 2
+=> 11
 ```
 
 ## License
