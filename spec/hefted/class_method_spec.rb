@@ -12,12 +12,25 @@ describe Hefted::ClassMethod do
         ham: 20,
         eggs: 100
       )
+
+      hefted(
+        name: :tete,
+        members: %i(you got fooled)
+      )
+
+      hefted(
+        name: :titi,
+        join: %i(toto tete),
+        members: %i(make me nervous)
+      )
     end
   end
 
   context "respond_to?" do
     subject { klass }
     it { is_expected.to be_const_defined(:Toto) }
+    it { is_expected.to be_const_defined(:Tete) }
+    it { is_expected.to be_const_defined(:Titi) }
     it { is_expected.to respond_to(:hefted) }
     it { is_expected.to respond_to(:release_hefted) }
     it { expect { Hefted::ClassMethod::Base }.to raise_error(NameError) }
@@ -48,6 +61,23 @@ describe Hefted::ClassMethod do
     it(:fetch_values) { expect { |b| subject.fetch_values(:spam, :name, &b) }.to yield_control }
     it(:values_at) { expect(subject.values_at(:spam, :name)).to include(1, nil) }
     it(:[]) { expect(subject[:eggs]).to eq 100 }
+    it(:[]) { expect(subject[:name]).to eq nil }
+  end
+
+  context "join struct" do
+    let(:toto) { klass.const_get(:Toto) }
+    let(:tete) { klass.const_get(:Tete) }
+    subject { klass.const_get(:Titi) }
+
+    it(:members) do
+      expect(subject.members).to include(*toto.members, *tete.members, :make, :me, :nervous)
+    end
+
+    it(:values) do
+      expect(subject.values).to include(*toto.values, *tete.values, 0, 1, 2)
+    end
+
+    it(:[]) { expect(subject[:me]).to eq 1 }
     it(:[]) { expect(subject[:name]).to eq nil }
   end
 
