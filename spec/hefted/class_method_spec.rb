@@ -26,6 +26,12 @@ describe Hefted::ClassMethod do
     end
   end
 
+  let(:blanklass) do
+    Class.new do
+      extend Hefted::ClassMethod
+    end
+  end
+
   context "respond_to?" do
     subject { klass }
     it { is_expected.to be_const_defined(:Toto) }
@@ -35,6 +41,7 @@ describe Hefted::ClassMethod do
     it { is_expected.to respond_to(:release_hefted) }
     it { is_expected.to respond_to(:hefts) }
     it(:hefts) { expect(subject.hefts).to include(:Toto, :Tete, :Titi) }
+    it(:no_hefts) { expect(blanklass.hefts).to be_nil }
     it { expect { Hefted::ClassMethod::Base }.to raise_error(NameError) }
   end
 
