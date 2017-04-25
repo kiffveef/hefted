@@ -16,19 +16,6 @@ module Hefted
       end
     end
 
-    private
-      def const_join(**args)
-        arguments = Argument.new(**args)
-        if arguments.join?
-          _consts = arguments.joins.each_with_object({}) do |name, hash|
-            hash.merge!(self.const_get(name).to_h)
-          end.merge!(arguments.keys.zip(arguments.values).to_h)
-          Argument.new(name: arguments.name, **_consts)
-        else
-          arguments
-        end
-      end
-
     class Base < Struct
       def each
         return to_enum(:each) unless block_given?
@@ -86,5 +73,18 @@ module Hefted
       end
     end
     private_constant :Base
+
+    private
+      def const_join(**args)
+        arguments = Argument.new(**args)
+        if arguments.join?
+          _consts = arguments.joins.each_with_object({}) do |name, hash|
+            hash.merge!(self.const_get(name).to_h)
+          end.merge!(arguments.keys.zip(arguments.values).to_h)
+          Argument.new(name: arguments.name, **_consts)
+        else
+          arguments
+        end
+      end
   end
 end
