@@ -33,6 +33,8 @@ describe Hefted::ClassMethod do
     it { is_expected.to be_const_defined(:Titi) }
     it { is_expected.to respond_to(:hefted) }
     it { is_expected.to respond_to(:release_hefted) }
+    it { is_expected.to respond_to(:hefts) }
+    it(:hefts) { expect(subject.hefts).to include(:Toto, :Tete, :Titi) }
     it { expect { Hefted::ClassMethod::Base }.to raise_error(NameError) }
   end
 

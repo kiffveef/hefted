@@ -6,7 +6,9 @@ module Hefted
       arguments = const_join(args)
       template = Base.new(*arguments.keys)
       self.const_set(arguments.name, template.new(*arguments.values).freeze)
+      @hefts = (@hefts.nil? ? [] : @hefts) << arguments.name
     end
+    attr_reader :hefts
 
     def release_hefted(*names)
       names.each do |name|
