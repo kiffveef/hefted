@@ -6,26 +6,15 @@ module Hefted
       arguments = const_join(args)
       template = Base.new(*arguments.keys)
       self.const_set(arguments.name, template.new(*arguments.values).freeze)
+      @hefts = (@hefts.nil? ? [] : @hefts) << arguments.name
     end
+    attr_reader :hefts
 
     def release_hefted(*names)
       names.each do |name|
         remove_const(name.to_camel) if const_defined?(name.to_camel)
       end
     end
-
-    private
-      def const_join(**args)
-        arguments = Argument.new(**args)
-        if arguments.join?
-          _consts = arguments.joins.each_with_object({}) do |name, hash|
-            hash.merge!(self.const_get(name).to_h)
-          end.merge!(arguments.keys.zip(arguments.values).to_h)
-          Argument.new(name: arguments.name, **_consts)
-        else
-          arguments
-        end
-      end
 
     class Base < Struct
       def each
@@ -84,5 +73,18 @@ module Hefted
       end
     end
     private_constant :Base
+
+    private
+      def const_join(**args)
+        arguments = Argument.new(**args)
+        if arguments.join?
+          _consts = arguments.joins.each_with_object({}) do |name, hash|
+            hash.merge!(self.const_get(name).to_h)
+          end.merge!(arguments.keys.zip(arguments.values).to_h)
+          Argument.new(name: arguments.name, **_consts)
+        else
+          arguments
+        end
+      end
   end
 end
