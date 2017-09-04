@@ -45,7 +45,7 @@ module Hefted
     end
 
     def joins
-      @join.map { |name| name.to_camel }
+      @join.map(&:to_camel)
     end
   end
 end
